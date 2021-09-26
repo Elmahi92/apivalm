@@ -1,13 +1,3 @@
-#' Get data from Valmyndigheten
-#'
-#' @param years A numeric vector of years (2010, 2014 and/or 2018)
-#' @param election_type A character vector of election types ("riksdag", "county" and/or "municipality")
-#' @return A tibble of elections matching the specificed \code{year} and \code{election_type}
-#' @examples
-#' valmyndigheten_get(c(2010), c("riksdag"))
-#' valmyndigheten_get(c(2010, 2014, 2018), c("riksdag", "county", "municipality"))
-#' @export
-
 library(tidyverse)
 library(httr)
 library(readxl)
@@ -23,6 +13,17 @@ urls <- c("https://data.val.se/val/val2010/statistik/slutligt_valresultat_kommun
           "https://data.val.se/val/val2014/statistik/2014_kommunval_per_kommun.xlsx",
           "https://data.val.se/val/val2018/statistik/2018_K_per_kommun.xlsx")
 
+#' Get data from Valmyndigheten
+#'
+#' @title valmyndigheten_get
+#' @param years A numeric vector of years (2010, 2014 and/or 2018)
+#' @param election_type A character vector of election types ("riksdag", "county" and/or "municipality")
+#' @return A tibble of elections matching the specificed \code{year} and \code{election_type}
+#' @examples
+#' valmyndigheten_get(c(2010), c("riksdag"))
+#' valmyndigheten_get(c(2010, 2014, 2018), c("riksdag", "county", "municipality"))
+#' @export
+#'
 valmyndigheten_get <- function(years, election_types) {
   df <- tibble(`Year` = numeric(),
                `Election type` = character(),
