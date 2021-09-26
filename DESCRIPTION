@@ -1,0 +1,12 @@
+Package: apivalm
+Type: Package
+Title: API connection package
+Version: 0.1.0
+Authors@R: c(
+    person("Simon", "Elsen", email = "simal451@student.liu.se", role = c("cre")),
+    person("Mohamed", "Ali", email = "mohal954@student.liu.se", role = c("aut")))
+Description: Package to perfrome api connection to Swedish election agency
+License: CC0
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
