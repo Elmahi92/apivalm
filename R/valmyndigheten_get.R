@@ -17,7 +17,7 @@ urls <- c("https://data.val.se/val/val2010/statistik/slutligt_valresultat_kommun
 #'
 #' @title valmyndigheten_get
 #' @param years A numeric vector of years (2010, 2014 and/or 2018)
-#' @param election_type A character vector of election types ("riksdag", "county" and/or "municipality")
+#' @param election_types A character vector of election types ("riksdag", "county" and/or "municipality")
 #' @return A tibble of elections matching the specificed \code{year} and \code{election_type}
 #' @examples
 #' valmyndigheten_get(c(2010), c("riksdag"))

@@ -9,7 +9,7 @@ valmyndigheten_get(years, election_types)
 \arguments{
 \item{years}{A numeric vector of years (2010, 2014 and/or 2018)}
 
-\item{election_type}{A character vector of election types ("riksdag", "county" and/or "municipality")}
+\item{election_types}{A character vector of election types ("riksdag", "county" and/or "municipality")}
 }
 \value{
 A tibble of elections matching the specificed \code{year} and \code{election_type}
