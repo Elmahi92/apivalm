@@ -78,7 +78,7 @@ valmyndigheten_get <- function(years, election_types) {
                          select(-c(23:28)) %>%
                          rename_with(., ~ gsub(" tal", " no", .x, fixed = TRUE)) %>%
                          rename_with(., ~ gsub(" proc", " pct", .x, fixed = TRUE)) %>%
-                         rename(`County code` = LAN, `Municipality code` = KOM, County = LÄN, Municipality = KOMMUN,
+                         rename(`County code` = LAN, `Municipality code` = KOM, County = 'L\u00C4N', Municipality = KOMMUN,
                                 `L no` = `FP no`, `L pct` = `FP pct`,
                                 `Blank no` = `BL no`, `Blank pct` = `BL pct`, `Valid votes` = `Rost Giltiga`,
                                 `Votes cast` = Rostande, `Registered voters` = Rostb, `Turnout` = VDT,
@@ -94,7 +94,7 @@ valmyndigheten_get <- function(years, election_types) {
                                    write_disk(tempfile(fileext = strsplit(basename(urls[2]), split="\\.")[[1]][2])))$content, skip = 2) %>%
                         rename_with(., ~ gsub(" tal", " no", .x, fixed = TRUE)) %>%
                         rename_with(., ~ gsub(" proc", " pct", .x, fixed = TRUE)) %>%
-                        rename(`County code` = LAN, `Municipality code` = KOM, County = LÄN, Municipality = KOMMUN,
+                        rename(`County code` = LAN, `Municipality code` = KOM, County = 'L\u00C4N', Municipality = KOMMUN,
                                `L no` = `FP no`, `L pct` = `FP pct`, `Other no` = `OVR no`, `Other pct` = `OVR pct`,
                                `Blank no` = `BL no`, `Blank pct` = `BL pct`, `Valid votes` = `Rost Giltiga`,
                                `Votes cast` = Rostande, `Registered voters` = Rostb, `Turnout` = VDT,
@@ -112,21 +112,21 @@ valmyndigheten_get <- function(years, election_types) {
                                   mutate(`Other no` = rowSums(.[,c(14:38)], na.rm = TRUE)) %>%
                                   select(-c(14:39,41)) %>%
                                   rename_with(.fn = ~ paste0(.x, " no"), .cols = c(5:14)) %>%
-                                  add_column(`Year` = 2018, .before = "LÄNSKOD") %>%
-                                  add_column(`Election type` = "Riksdag", .before = "LÄNSKOD"),
+                                  add_column(`Year` = 2018, .before = "L\U00C4NSKOD") %>%
+                                  add_column(`Election type` = "Riksdag", .before = "L\U00C4NSKOD"),
                                 read_xlsx(GET(urls[3],
                                               write_disk(tempfile(fileext = strsplit(basename(urls[3]), split="\\.")[[1]][2])))$content, sheet = "R procent") %>%
                                   mutate(`Invalid pct` = rowSums(.[,c(39,41)], na.rm = TRUE))  %>%
                                   mutate(`Other pct` = rowSums(.[,c(14:38)], na.rm = TRUE)) %>%
                                   select(-c(14:39,41)) %>%
                                   rename_with(.fn = ~ paste0(.x, " pct"), .cols = c(5:14))  %>%
-                                  add_column(`Year` = 2018, .before = "LÄNSKOD") %>%
-                                  add_column(`Election type` = "Riksdag", .before = "LÄNSKOD")) %>%
+                                  add_column(`Year` = 2018, .before = "L\U00C4NSKOD") %>%
+                                  add_column(`Election type` = "Riksdag", .before = "L\U00C4NSKOD")) %>%
                         rename_with(., ~ gsub(" tal", " no", .x, fixed = TRUE)) %>%
                         rename_with(., ~ gsub(" proc", " pct", .x, fixed = TRUE)) %>%
-                        rename(`County code` = LÄNSKOD, `Municipality code` = KOMMUNKOD, County = LÄNSNAMN,
-                               Municipality = KOMMUNNAMN, `Valid votes` = `RÖSTER GILTIGA`, `Votes cast` = RÖSTANDE,
-                               `Registered voters` = RÖSTBERÄTTIGADE, `Turnout` = VALDELTAGANDE,
+                        rename(`County code` = 'L\u00C4NSKOD', `Municipality code` = KOMMUNKOD, County = 'L\u00C4NSNAMN',
+                               Municipality = KOMMUNNAMN, `Valid votes` = 'R\u00D6STER GILTIGA', `Votes cast` = 'R\u00D6STANDE',
+                               `Registered voters` = 'R\u00D6STBER\u00C4TTIGADE', `Turnout` = VALDELTAGANDE,
                                `Blank no` = `BLANK no`, `Blank pct` = `BLANK pct`))
     }
   }
@@ -145,7 +145,7 @@ valmyndigheten_get <- function(years, election_types) {
                         select(-c(21:40, 43:92)) %>%
                         rename_with(., ~ gsub(" tal", " no", .x, fixed = TRUE)) %>%
                         rename_with(., ~ gsub(" proc", " pct", .x, fixed = TRUE)) %>%
-                        rename(`County code` = `LÄN...1`, `Municipality code` = KOM, County = `LÄN...3`, Municipality = KOMMUN,
+                        rename(`County code` = 'L\U00C4N...1', `Municipality code` = KOM, County = 'L\U00C4N...3', Municipality = KOMMUN,
                                `L no` = `FP no`, `L pct` = `FP pct`, `Blank no` = `BLANK no`, `Blank pct` = `BLANK pct`,
                                `Valid votes` = `Rost Giltiga`, `Votes cast` = Rostande, `Registered voters` = Rostb,
                                `Turnout` = VDT, `Invalid no` = `OG no`, `Invalid pct` = `OG pct`)  %>%
@@ -164,7 +164,7 @@ valmyndigheten_get <- function(years, election_types) {
                         select(-c(23:112)) %>%
                         rename_with(., ~ gsub(" tal", " no", .x, fixed = TRUE)) %>%
                         rename_with(., ~ gsub(" proc", " pct", .x, fixed = TRUE)) %>%
-                        rename(`County code` = `LÄN...1`, `Municipality code` = KOM, County = `LÄN...3`, Municipality = KOMMUN,
+                        rename(`County code` = 'L\U00C4N...1', `Municipality code` = KOM, County = 'L\U00C4N...3', Municipality = KOMMUN,
                                `L no` = `FP no`, `L pct` = `FP pct`, `Blank no` = `BLANK no`, `Blank pct` = `BLANK pct`,
                                `Valid votes` = `Rost Giltiga`, `Votes cast` = Rostande, `Registered voters` = Rostb,
                                `Turnout` = VDT, `Invalid no` = `OG no`, `Invalid pct` = `OG pct`) %>%
@@ -189,9 +189,9 @@ valmyndigheten_get <- function(years, election_types) {
                                   rename_with(.fn = ~ paste0(.x, " pct"), .cols = c(5:14))) %>%
                         rename_with(., ~ gsub(" tal", " no", .x, fixed = TRUE)) %>%
                         rename_with(., ~ gsub(" proc", " pct", .x, fixed = TRUE)) %>%
-                        rename(`County code` = LÄNSKOD, `Municipality code` = KOMMUNKOD, County = LÄNSNAMN,
-                               Municipality = KOMMUNNAMN, `Valid votes` = `RÖSTER GILTIGA`, `Votes cast` = RÖSTANDE,
-                               `Registered voters` = RÖSTBERÄTTIGADE, `Turnout` = VALDELTAGANDE,
+                        rename(`County code` = 'L\u00C4NSKOD', `Municipality code` = KOMMUNKOD, County = 'L\u00C4NSNAMN',
+                               Municipality = KOMMUNNAMN, `Valid votes` = 'R\u00D6STER GILTIGA', `Votes cast` = 'R\u00D6STANDE',
+                               `Registered voters` = 'R\u00D6STBER\u00C4TTIGADE', `Turnout` = VALDELTAGANDE,
                                `Blank no` = `BLANK no`, `Blank pct` = `BLANK pct`) %>%
                         add_column(`Year` = 2018, .before = "County code") %>%
                         add_column(`Election type` = "County council", .before = "County code"))
@@ -209,7 +209,7 @@ valmyndigheten_get <- function(years, election_types) {
                                              write_disk(tempfile(fileext = strsplit(basename(urls[7]), split="\\.")[[1]][2])))$content) %>%
                                   mutate(`Other no` = rowSums(.[,c(13:96, 98:222)], na.rm = TRUE)) %>%
                                   select(-c(13:96, 98:222)) %>%
-                                  rename(`County code` = `LÄN...1`, `County` = `LÄN...3`, `Municipality code` = `KOM...2`,
+                                  rename(`County code` = 'L\U00C4N...1', `County` = 'L\U00C4N...3', `Municipality code` = `KOM...2`,
                                          `Municipality` = `KOMMUN`, `Blank` = `BLANK`, `Valid votes` = `Rost Giltiga`,
                                          `Votes cast` = Rostande, `Registered voters` = Rostb,
                                          `Turnout` = VDT, `Invalid` = `OG`, `Invalid` = `OG`,
@@ -221,7 +221,7 @@ valmyndigheten_get <- function(years, election_types) {
                                              write_disk(tempfile(fileext = strsplit(basename(urls[8]), split="\\.")[[1]][2])))$content) %>%
                                   mutate(`Other pct` = rowSums(.[,c(13:96, 98:222)], na.rm = TRUE)) %>%
                                   select(-c(13:96, 98:222)) %>%
-                                  rename(`County code` = `LÄN...1`, `County` = `LÄN...3`, `Municipality code` = `KOM...2`,
+                                  rename(`County code` = 'L\U00C4N...1', `County` = 'L\U00C4N...3', `Municipality code` = `KOM...2`,
                                          `Municipality` = `KOMMUN`, `Blank` = `BLANK`, `Valid votes` = `Rost Giltiga`,
                                          `Votes cast` = Rostande, `Registered voters` = Rostb,
                                          `Turnout` = VDT, `Invalid` = `OG`, `Invalid` = `OG`,
@@ -241,7 +241,7 @@ valmyndigheten_get <- function(years, election_types) {
                         select(-c(23:518)) %>%
                         rename_with(., ~ gsub(" tal", " no", .x, fixed = TRUE)) %>%
                         rename_with(., ~ gsub(" proc", " pct", .x, fixed = TRUE)) %>%
-                        rename(`County code` = `LÄN...1`, `Municipality code` = KOM, County = `LÄN...3`, Municipality = KOMMUN,
+                        rename(`County code` = 'L\U00C4N...1', `Municipality code` = KOM, County = 'L\U00C4N...3', Municipality = KOMMUN,
                                `L no` = `FP no`, `L pct` = `FP pct`, `Blank no` = `BLANK no`, `Blank pct` = `BLANK pct`,
                                `Valid votes` = `Rost Giltiga`, `Votes cast` = Rostande, `Registered voters` = Rostb,
                                `Turnout` = VDT, `Invalid no` = `OG no`, `Invalid pct` = `OG pct`) %>%
@@ -266,9 +266,9 @@ valmyndigheten_get <- function(years, election_types) {
                                   rename_with(.fn = ~ paste0(.x, " pct"), .cols = c(5:14))) %>%
                         rename_with(., ~ gsub(" tal", " no", .x, fixed = TRUE)) %>%
                         rename_with(., ~ gsub(" proc", " pct", .x, fixed = TRUE)) %>%
-                        rename(`County code` = LÄNSKOD, `Municipality code` = KOMMUNKOD, County = LÄNSNAMN,
-                               Municipality = KOMMUNNAMN, `Valid votes` = `RÖSTER GILTIGA`, `Votes cast` = RÖSTANDE,
-                               `Registered voters` = RÖSTBERÄTTIGADE, `Turnout` = VALDELTAGANDE,
+                        rename(`County code` = 'L\u00C4NSKOD', `Municipality code` = KOMMUNKOD, County = 'L\u00C4NSNAMN',
+                               Municipality = KOMMUNNAMN, `Valid votes` = 'R\u00D6STER GILTIGA', `Votes cast` = 'R\u00D6STANDE',
+                               `Registered voters` = 'R\u00D6STBER\u00C4TTIGADE', `Turnout` = VALDELTAGANDE,
                                `Blank no` = `BLANK no`, `Blank pct` = `BLANK pct`) %>%
                         add_column(`Year` = 2018, .before = "County code") %>%
                         add_column(`Election type` = "Municipal council", .before = "County code"))
