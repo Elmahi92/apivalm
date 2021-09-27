@@ -1,22 +1,30 @@
 library(xml2)
 library(tidyverse)
+library(dplyr)
 
 # Make a temporary file (tf) and a temporary folder (tdir)
 tf <- tempfile(tmpdir = tdir <- tempdir())
+#enter year
+year <- 2018
 
+url<-paste0("https://data.val.se/val/val",year,"/slutresultat/slutresultat.zip")
 
+url
 # Download the zip file
-download.file("https://data.val.se/val/val2014/slutresultat/slutresultat.zip", tf)
+download.file(url, tf)
 
 # Unzip it in the temp folder
 xml_files <- unzip(tf, exdir = tdir)
 
+
+# note that K>> Municipality || L>> County Council || R>> Municipality note that letters in CAPS
+file<- "K"
+pat<- paste0("slutresultat_\\d{2}",file,".xml$")
+
 # Get the filenames of the files to import
 # They have 4 digits in the file name, and ends with the letter K
-# note that K>> Municipality || L>> County Council || R>> Municipality
-
 files_to_import <- fs::dir_ls(tdir) %>%
-  str_subset(pattern = "slutresultat_\\d{2}K.xml$")
+  str_subset(pattern = pat)
 
 # Create a function to read a file and get the information wanted
 val<-as.character(c("//KOMMUN","//VALDISTRIKT"))
@@ -34,6 +42,8 @@ read_dist <- . %>%
 # Map over all the files
 KOMMUN <- map_df(files_to_import, read_dist)
 
+#select dataframe
+KOMMUN2 <- KOMMUN[,c(7,14:16)]
 
 
 
