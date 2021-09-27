@@ -21,7 +21,7 @@ urls <- c("https://data.val.se/val/val2010/statistik/slutligt_valresultat_kommun
 #' @return A tibble of elections matching the specificed \code{year} and \code{election_type}
 #' @examples
 #' valmyndigheten_get(c(2010), c("riksdag"))
-#' valmyndigheten_get(c(2010, 2014, 2018), c("riksdag", "county", "municipality"))
+#' valmyndigheten_get(c(2010, 2014, 2018), c("riksdag", "county", "municipal"))
 #' @export
 #'
 valmyndigheten_get <- function(years, election_types) {
