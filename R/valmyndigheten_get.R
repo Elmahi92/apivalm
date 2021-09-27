@@ -25,6 +25,9 @@ urls <- c("https://data.val.se/val/val2010/statistik/slutligt_valresultat_kommun
 #' @export
 #'
 valmyndigheten_get <- function(years, election_types) {
+  if(!all(years %in% c(2010, 2014, 2018))) stop("Incorrect year! Data is only available for 2010, 2014 and 2018.")
+  if(!all(election_types %in% c("riksdag", "county", "municipal"))) stop("Incorrect election type! Available election types are riksdag, county and municipal.")
+
   df <- tibble(`Year` = numeric(),
                `Election type` = character(),
                `County code` = numeric(),

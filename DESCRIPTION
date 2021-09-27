@@ -16,3 +16,6 @@ Depends:
   readxl
 URL: https://github.com/Elmahi92/apivalm
 BugReports: https://github.com/Elmahi92/apivalm/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
