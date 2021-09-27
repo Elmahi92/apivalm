@@ -1,5 +1,3 @@
-context("valmyndigheten_get")
-
 urls <- c("https://data.val.se/val/val2010/statistik/slutligt_valresultat_kommuner_R.xls",
           "https://data.val.se/val/val2014/statistik/2014_riksdagsval_per_kommun.xls",
           "https://data.val.se/val/val2018/statistik/2018_R_per_kommun.xlsx",
@@ -18,7 +16,7 @@ test_that("Object valmyndigheten_get exists", {
 })
 
 test_that("valmyndigheten_get is a function", {
-  expect_is(valmyndigheten_get, class = "function")
+  expect_true(class(valmyndigheten_get) == "function")
 })
 
 test_that("valmyndigheten_get rejects errounous inputs", {
@@ -36,7 +34,7 @@ test_that("Data requests succeded", {
 })
 
 test_that("The returned object is a tbl_df", {
-  expect_is(valmyndigheten_get(c(2010), c("riksdag")), "tbl_df")
+  expect_true(all(class(valmyndigheten_get(c(2010), c("riksdag"))) == c("tbl_df", "tbl", "data.frame")))
 })
 
 test_that("The returned tbl_df contains correct number of rows", {
@@ -48,10 +46,10 @@ test_that("The returned tbl_df contains the correct number of columns", {
 })
 
 test_that("Columns in tbl_df are named correctly", {
-  expect_true(all(colnames(df) == c("Year", "Election type", "County code", "Municipality code", "County", 
-              "Municipality", "M no", "M pct", "C no", "C pct", "L no", "L pct", "KD no", "KD pct", 
-              "S no", "S pct", "V no", "V pct", "MP no", "MP pct", "SD no", "SD pct", "FI no", 
-              "FI pct", "Other no", "Other pct", "Blank no", "Blank pct", "Invalid no", 
+  expect_true(all(colnames(df) == c("Year", "Election type", "County code", "Municipality code", "County",
+              "Municipality", "M no", "M pct", "C no", "C pct", "L no", "L pct", "KD no", "KD pct",
+              "S no", "S pct", "V no", "V pct", "MP no", "MP pct", "SD no", "SD pct", "FI no",
+              "FI pct", "Other no", "Other pct", "Blank no", "Blank pct", "Invalid no",
               "Invalid pct", "Valid votes", "Votes cast", "Registered voters", "Turnout")))
 })
 
