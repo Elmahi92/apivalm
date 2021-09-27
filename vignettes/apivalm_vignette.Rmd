@@ -1,0 +1,62 @@
+---
+title: "API to the Swedish Election Agency"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{API to   the Swedish election agency}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## How it's work?
+
+This API function designed to recall election results for different parties whom participates in Swedish election for the years 2010, 2014 and 2018, and then visualize the results to show the distribution of election per party among counties.
+
+
+## How to ues it
+
+Start by defining in which year you want to see the election results, note that the only years available are (2010,2014 and 2018), and error massage “Incorrect year! Data is only available for 2010, 2014 and 2018."  will be displayed if you type different year than the stated ones, 
+Start by install the package by typing the command
+ 
+```{r,echo=T,eval = FALSE}
+library(valmyndigheten_get)
+```
+
+## How to ues it Step 2 
+
+Define which year you want to have results for and type the year, then define the election type, for this package three types of elections are defined, Riksdag, County and Municipal.
+Note that an error massage "Incorrect election type! Available election types are Riksdag, county and municipal." will be displayed if you typed any other type of election than the stated ones (Riksdag, County and Municipal)
+
+```{r, echo=T,eval = FALSE}
+valmyndigheten_get(year,election_types)
+```
+
+## How does the results looks like?
+
+A table with the selected year and election type will be generated.
+
+```{r, echo=T,eval = FALSE}
+valmyndigheten_get(year,election_types)
+```
+
+## Results example
+
+Data viwe will consist of main variables which are 
+Year | Election | type County code |  Municipality code | County | Municipality
+<dbl>    <chr>       <dbl>            <dbl>                <chr>      <chr>
+and the count and percentages of votes per party as well as Valid votes,Votes cast,Registered voters and finally the Turnout.
+
+
+```{r, echo=T,eval = FALSE}
+valmyndigheten_get(2018,"county")
+```
+
+
