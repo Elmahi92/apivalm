@@ -13,6 +13,8 @@ RoxygenNote: 7.1.2
 Depends:
   httr,
   tidyverse,
+  shiny (>= 0.13.0),
+  shinyjs (>= 0.5.2),
   readxl
 URL: https://github.com/Elmahi92/apivalm
 BugReports: https://github.com/Elmahi92/apivalm/issues

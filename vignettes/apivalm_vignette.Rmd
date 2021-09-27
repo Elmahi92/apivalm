@@ -20,6 +20,18 @@ knitr::opts_chunk$set(
 
 This API function designed to recall election results for different parties whom participates in Swedish election for the years 2010, 2014 and 2018, and then visualize the results to show the distribution of election per party among counties.
 
+## Installation
+
+`apivalm` is available through  GitHub.
+
+To install the latest development version from GitHub:
+
+ 
+```{r,echo=T,eval = FALSE}
+install.packages("devtools")
+devtools::install_github("Elmahi92/apivalm")
+```
+
 
 ## How to ues it
 
@@ -49,7 +61,7 @@ valmyndigheten_get(year,election_types)
 
 ## Results example
 
-Data viwe will consist of main variables which are 
+Data view will consist of main variables which are 
 Year | Election | type County code |  Municipality code | County | Municipality
 <dbl>    <chr>       <dbl>            <dbl>                <chr>      <chr>
 and the count and percentages of votes per party as well as Valid votes,Votes cast,Registered voters and finally the Turnout.
@@ -58,5 +70,13 @@ and the count and percentages of votes per party as well as Valid votes,Votes ca
 ```{r, echo=T,eval = FALSE}
 valmyndigheten_get(2018,"county")
 ```
+
+## Data Visuilzation
+
+The package also have a data visualization tool using Shiny app to, in which counts, percentages per County and Municipal are plot , year also can be defined to better understand the election results.
+```{r, echo=T,eval = FALSE}
+valmyndigheten_get(2018,"county")
+```
+
 
 
