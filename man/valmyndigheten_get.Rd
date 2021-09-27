@@ -19,5 +19,5 @@ Get data from Valmyndigheten
 }
 \examples{
 valmyndigheten_get(c(2010), c("riksdag"))
-valmyndigheten_get(c(2010, 2014, 2018), c("riksdag", "county", "municipality"))
+valmyndigheten_get(c(2010, 2014, 2018), c("riksdag", "county", "municipal"))
 }
