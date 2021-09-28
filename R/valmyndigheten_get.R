@@ -22,6 +22,7 @@ urls <- c("https://data.val.se/val/val2010/statistik/slutligt_valresultat_kommun
 #' @examples
 #' valmyndigheten_get(c(2010), c("riksdag"))
 #' valmyndigheten_get(c(2010, 2014, 2018), c("riksdag", "county", "municipal"))
+#' @import httr readxl tidyverse
 #' @export
 #'
 valmyndigheten_get <- function(years, election_types) {

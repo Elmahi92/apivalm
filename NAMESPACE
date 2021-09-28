@@ -2,3 +2,7 @@
 
 export(runExample)
 export(valmyndigheten_get)
+import(httr)
+import(readxl)
+import(shiny)
+import(tidyverse)

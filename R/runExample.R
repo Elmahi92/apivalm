@@ -4,6 +4,7 @@
 #' if (interactive()) {
 #'   runExample()
 #' }
+#' @import shiny
 #' @export
 runExample <- function() {
   appDir <- system.file("shiny-examples", "myapp", package = "apivalm")
