@@ -1,11 +1,10 @@
 ---
-title: "API to the Swedish Election Agency"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{API to   the Swedish election agency}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{API to the Swedish Election Agency}
+  %\usepackage[UTF-8]{inputenc}
 ---
 
 ```{r setup, include = FALSE}
