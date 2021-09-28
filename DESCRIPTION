@@ -15,6 +15,7 @@ Depends:
   tidyverse,
   shiny (>= 0.13.0),
   readxl
+VignetteBuilder: knitr
 URL: https://github.com/Elmahi92/apivalm
 BugReports: https://github.com/Elmahi92/apivalm/issues
 Suggests: 
