@@ -78,5 +78,13 @@ The package also have a data visualization tool using Shiny app to, in which cou
 valmyndigheten_get(2018,"county")
 ```
 
+## How to use the shiny app example
+
+The package comes with a shiny app that's allow for data visualization and reporting the election base on different pre-selected fields
+
+```{r, echo=T,eval = FALSE}
+runExample()
+```
+
 
 
